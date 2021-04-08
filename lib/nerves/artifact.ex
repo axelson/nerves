@@ -50,6 +50,8 @@ defmodule Nerves.Artifact do
     case pkg.build_runner do
       {build_runner, _opts} ->
         Code.ensure_compiled(pkg.platform)
+        Mix.shell().info("pkg #{inspect pkg}")
+        # HERE
         {:ok, archive_path} = build_runner.archive(pkg, toolchain, opts)
         archive_path = Path.expand(archive_path)
 
