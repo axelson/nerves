@@ -23,7 +23,7 @@ defmodule Nerves.Artifact do
           {:error, error} ->
             Mix.raise("""
             Nerves encountered an error while constructing the artifact
-            #{error}
+            #{inspect error}
             """)
         end
 
@@ -285,13 +285,14 @@ defmodule Nerves.Artifact do
           Mix.raise("""
           artifact_urls can only be strings.
           Please use artifact_sites instead.
+          Received: #{inspect urls}
           """)
         end
 
         urls
 
-      _invalid ->
-        Mix.raise("Invalid artifact_url. Please use artifact_sites instead")
+      invalid ->
+        Mix.raise("Invalid artifact_url (#{inspect invalid}). Please use artifact_sites instead")
     end
   end
 
