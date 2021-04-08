@@ -14,8 +14,10 @@ defmodule Nerves.Artifact do
   """
   @spec build(Nerves.Package.t(), Nerves.Package.t()) :: :ok
   def build(pkg, toolchain) do
+    Mix.shell().info("Building pkg: #{inspect pkg} toolchain: #{inspect toolchain}")
     case pkg.build_runner do
       {build_runner, opts} ->
+        Mix.shell().info("build_runner: #{inspect build_runner} opts: #{inspect opts}")
         case build_runner.build(pkg, toolchain, opts) do
           {:ok, path} ->
             Cache.put(pkg, path)
